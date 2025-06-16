@@ -6,7 +6,7 @@ from django.core.files.base import ContentFile
 import base64
 
 # Create your views here.
-@csrf_exempt
+
 def index(request) :
     return render(request, 'orders/index.html')
 
@@ -17,7 +17,7 @@ def index(request) :
 from django.core.mail import send_mail
 from django.shortcuts import render
 from django.http import HttpResponse
-
+@csrf_exempt
 def submit_order(request):
     if request.method == "POST":
         name = request.POST.get("name")
