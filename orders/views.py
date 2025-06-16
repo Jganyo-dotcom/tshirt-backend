@@ -6,7 +6,7 @@ from django.core.files.base import ContentFile
 import base64
 
 # Create your views here.
-
+@csrf_exempt
 def index(request) :
     return render(request, 'orders/index.html')
 
