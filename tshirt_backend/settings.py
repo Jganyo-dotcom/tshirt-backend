@@ -124,9 +124,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
 
-DEBUG = False
 
-ALLOWED_HOSTS = ['your-backend.onrender.com']  # Will be updated after deploying
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
