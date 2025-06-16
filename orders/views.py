@@ -7,9 +7,8 @@ import base64
 
 # Create your views here.
 
-def index(request) :
-    return render(request, 'orders/index.html')
-
+def index(request):
+    return HttpResponse("🎯 T-Shirt backend is live!")
 
 
 
