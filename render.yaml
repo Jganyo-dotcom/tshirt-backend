@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: tshirt-backend
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn tshirt_backend.wsgi:application"
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: tshirt_backend.settings
+      - key: SECRET_KEY
+        value: your-django-secret-key
+      - key: DEBUG
+        value: False
