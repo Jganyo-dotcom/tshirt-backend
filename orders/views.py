@@ -5,6 +5,12 @@ from django.core.mail import EmailMessage
 import base64
 from django.core.files.base import ContentFile
 
+
+
+def index(request) :
+    return HttpResponse("🎯 T-Shirt backend is live!")
+
+
 @csrf_exempt
 def submit_order(request):
     if request.method == "POST":
