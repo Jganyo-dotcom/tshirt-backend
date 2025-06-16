@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qt9h*sy9-qhcpvw@1%ej^)i&m+gdl9hj7i+wqna8=mrrbtyv&=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['tshirt-backend.onrender.com', '127.0.0.1', 'localhost','tshirt-backend-lr0i.onrender.com',]
+ALLOWED_HOSTS = ['tshirt-backend.onrender.com', '127.0.0.1', 'localhost','tshirt-backend-lr0i.onrender.com']
 
 
 # Application definition
