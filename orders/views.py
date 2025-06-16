@@ -24,7 +24,7 @@ def submit_order(request):
         email = request.POST.get("email")
         to_email = request.POST.get("to_email")
         notes = request.POST.get("notes")
-        design_file = request.FILES.get("design")
+        
         screenshot_data = request.POST.get("screenshot_data")
 
         # Send email to yourself
@@ -40,7 +40,7 @@ Notes: {notes}
 
 (Screenshot or uploaded design is included in the backend files.)
 """,
-            from_email='your_email@gmail.com',
+            from_email= None,
             recipient_list=['elikemejay@gmail.com'],  # Replace with your real email
         )
 
