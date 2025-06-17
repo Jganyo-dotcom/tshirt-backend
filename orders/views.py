@@ -40,7 +40,7 @@ Notes: {notes}
             subject=f"🎨 New T-Shirt Order from {name}",
             body=message,
             from_email='elikemejay@gmail.com',  # or settings.DEFAULT_FROM_EMAIL
-            to=['elikemejay@gmail.com'],
+            to=['elikemjjames@gmail.com'],
         )
 
         # Attach screenshot if it exists
@@ -53,6 +53,113 @@ Notes: {notes}
         # Send the email
         mail.send(fail_silently=False)
 
-        return HttpResponse("✅ Order submitted and screenshot sent via email.")
+        return HttpResponse("""
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Order Submitted</title>
+                <style>
+                    body {
+                        background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+                        height: 100vh;
+                        margin: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-family: 'Segoe UI', sans-serif;
+                    }
+                    .message {
+                        padding: 30px 40px;
+                        background-color: #d4edda;
+                        color: #155724;
+                        border: 2px solid #28a745;
+                        border-radius: 12px;
+                        font-size: 1.5rem;
+                        box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                        animation: fadeInScale 1s ease-out;
+                        text-align: center;
+                    }
+
+                    @keyframes fadeInScale {
+                        0% {
+                            opacity: 0;
+                            transform: scale(0.9);
+                        }
+                        100% {
+                            opacity: 1;
+                            transform: scale(1);
+                        }
+                    }
+                </style>
+            </head>
+            <body>
+                <div class="message">
+                    ✅ Order submitted and screenshot sent via email.
+                </div>
+            </body>
+            </html>
+        """)
     
     return HttpResponse("❌ Please submit the form using POST.")
+
+
+
+def test_message(request):
+    return HttpResponse(""" 
+        <!DOCTYPE html>
+        <html>
+        <head>
+            <title>Test Message</title>
+            <style>
+                body {
+                    background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+                    height: 100vh;
+                    margin: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-family: 'Segoe UI', sans-serif;
+                }
+                .message {
+                    padding: 30px 40px;
+                    background-color: #d4edda;
+                    color: #155724;
+                    border: 2px solid #28a745;
+                    border-radius: 12px;
+                    font-size: 1.5rem;
+                    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                    animation: fadeInScale 1s ease-out;
+                    text-align: center;
+                }
+
+                @keyframes fadeInScale {
+                    0% {
+                        opacity: 0;
+                        transform: scale(0.9);
+                    }
+                    100% {
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+            </style>
+        </head>
+        <body>
+            <div class="message">
+                ✅ Order submitted and screenshot sent via email.
+            </div>
+        </body>
+        </html>
+    """)
+
+from django.core.mail import send_mail
+def test_email(request):
+    send_mail(
+        subject='🎉 Test Email from T-shirt Customizer',
+        message='This is a test email to confirm email setup is working.',
+        from_email='your_email@gmail.com',  # Or use None if using DEFAULT_FROM_EMAIL
+        recipient_list=['your_real_email@example.com'],
+        fail_silently=False,
+    )
+    return HttpResponse("✅ Test email sent!")
+
