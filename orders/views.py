@@ -40,7 +40,7 @@ Notes: {notes}
             subject=f"🎨 New T-Shirt Order from {name}",
             body=message,
             from_email='elikemejay@gmail.com',  # or settings.DEFAULT_FROM_EMAIL
-            to=['elikemjjames@gmail.com','Kagoventures@gmail.com'],
+            to=['elikemjjames@gmail.com'],#'Kagoventures@gmail.com' 
         )
 
         # Attach screenshot if it exists
