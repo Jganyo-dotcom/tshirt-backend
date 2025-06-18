@@ -94,7 +94,7 @@ Notes: {notes}
             </head>
             <body>
                 <div class="message">
-                    ✅ Order submitted and screenshot sent via email.
+                    ✅ Order received, Thank you for your patience ❤️ ❤️
                 </div>
             </body>
             </html>
@@ -104,7 +104,7 @@ Notes: {notes}
             <!DOCTYPE html>
             <html>
             <head>
-                <title>Order Submitted</title>
+                <title>❌failed </title>
                 <style>
                     body {
                         background: linear-gradient(to right, #e0f7fa, #e8f5e9);
