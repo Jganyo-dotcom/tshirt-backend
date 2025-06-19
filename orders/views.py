@@ -27,7 +27,8 @@ def submit_order(request):
             to_email = request.POST.get("to_email")
             phone = request.POST.get("phone")
             notes = request.POST.get("notes")
-            screenshot_data = request.POST.get("screenshot_data")
+            screenshot_data = request.FILES.get("screenshot_data")
+
 
             message = f"""
 You have a new T-shirt order:
