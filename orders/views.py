@@ -27,6 +27,7 @@ def submit_order(request):
             to_email = request.POST.get("to_email")
             phone = request.POST.get("phone")
             notes = request.POST.get("notes")
+            size = request.POST.get('size')
             screenshot_data = request.FILES.get("screenshot_data")
 
 
@@ -37,6 +38,7 @@ Full Name: {name}
 Email: {email}
 Contact: {phone}
 Number of T-shirts: {number}
+size : {size}
 Notes: {notes}
 
 (Screenshot is attached if provided.)
