@@ -50,14 +50,14 @@ Notes: {notes}
             )
 
             if screenshot_data:
-                print("🖼 Screenshot length:", len(screenshot_data))  # For debugging
-                if len(screenshot_data) < 5_000_000:  # Roughly < 5MB
-                    format, imgstr = screenshot_data.split(';base64,')
-                    ext = format.split('/')[-1]
-                    file_data = ContentFile(base64.b64decode(imgstr), name=f"screenshot.{ext}")
-                    mail.attach(file_data.name, file_data.read(), f'image/{ext}')
+                if screenshot_data.size < 5_000_000:
+                    mail.attach(screenshot_data.name, screenshot_data.read(), screenshot_data.content_type)
                 else:
                     print("⚠️ Screenshot skipped due to large size")
+
+            else:
+                print("⚠️ No screenshot file received")
+
 
             # Send email in background
             threading.Thread(target=send_order_email, args=(mail,)).start()
