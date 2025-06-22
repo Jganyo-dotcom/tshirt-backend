@@ -77,7 +77,8 @@ Notes: {notes}
         return JsonResponse({
             'message': 'order recieved'
         })
-    
+
+@csrf_exempt    
 def submit_specific_order(request):
     if request.method == 'POST':
         name = request.POST.get("name")
