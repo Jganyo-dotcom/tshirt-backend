@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core.mail import EmailMessage
 from django.core.files.base import ContentFile
+from django.http import JsonResponse
 import base64
 import threading
 import time
@@ -47,8 +48,8 @@ Notes: {notes}
             mail = EmailMessage(
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
-                from_email='elikemejay@gmail.com',
-                to=['elikemjjames@gmail.com'],
+                from_email=f"{email}",
+                to=['elikemjjames@gmail.com','Kagoventures@gmail.com'],
             )
 
             if screenshot_data:
@@ -65,88 +66,53 @@ Notes: {notes}
             threading.Thread(target=send_order_email, args=(mail,)).start()
 
             print("🕒 Order processed in", round(time.time() - start_time, 2), "seconds")
-            return HttpResponse("""
-                <!DOCTYPE html>
-                <html>
-                <head>
-                    <title>Order Submitted</title>
-                    <style>
-                        body {
-                            background: linear-gradient(to right, #e0f7fa, #e8f5e9);
-                            height: 100vh;
-                            margin: 0;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            font-family: 'Segoe UI', sans-serif;
-                        }
-                        .message {
-                            padding: 30px 40px;
-                            background-color: #d4edda;
-                            color: #155724;
-                            border: 2px solid #28a745;
-                            border-radius: 12px;
-                            font-size: 1.5rem;
-                            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-                            animation: fadeInScale 1s ease-out;
-                            text-align: center;
-                        }
-
-                        @keyframes fadeInScale {
-                            0% { opacity: 0; transform: scale(0.9); }
-                            100% { opacity: 1; transform: scale(1); }
-                        }
-                    </style>
-                </head>
-                <body>
-                    <div class="message">
-                        ✅ Order received, Thank you for your patience ❤️ ❤️
-                    </div>
-                </body>
-                </html>
-            """)
+            return JsonResponse({
+                'message': 'order recieved'
+            })
 
         except Exception as e:
             print("❌ Order failed due to error:", e)
 
     # If not POST or failed
-    return HttpResponse("""
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <title>❌ Failed</title>
-            <style>
-                body {
-                    background: linear-gradient(to right, #e0f7fa, #e8f5e9);
-                    height: 100vh;
-                    margin: 0;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-family: 'Segoe UI', sans-serif;
-                }
-                .message {
-                    padding: 30px 40px;
-                    background-color: #f8d7da;
-                    color: #721c24;
-                    border: 2px solid #f5c6cb;
-                    border-radius: 12px;
-                    font-size: 1.5rem;
-                    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-                    animation: fadeInScale 1s ease-out;
-                    text-align: center;
-                }
+        return JsonResponse({
+            'message': 'order recieved'
+        })
+    
+def submit_specific_order(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        number = request.POST.get("number")
+        email = request.POST.get("email")
+        design = request.POST.get("id_name")
+        phone = request.POST.get("phone")
+        notes = request.POST.get("notes")
+        size = request.POST.get('size')
 
-                @keyframes fadeInScale {
-                    0% { opacity: 0; transform: scale(0.9); }
-                    100% { opacity: 1; transform: scale(1); }
-                }
-            </style>
-        </head>
-        <body>
-            <div class="message">
-                ❌ Something went wrong. Please try again with a stable internet connection.
-            </div>
-        </body>
-        </html>
-    """)
+        message = f"""
+        📦 New T-Shirt Order:
+
+        👤 Name: {name}
+        📧 Email: {email}
+        📱 Phone: {phone}
+        🧥 Design ID: {design}
+            size : {size}
+            number :{number}
+            note : {notes}
+        """
+
+        try:
+            mail = EmailMessage(
+                subject=f"🎨 New T-Shirt Order from {name}",
+                body=message,
+                from_email=f"{email}",
+                to=['elikemjjames@gmail.com','Kagoventures@gmail.com'],
+            )
+            mail.send(fail_silently=False)
+            return JsonResponse({'message': 'Order sent successfully!'})
+        except Exception as e:
+            return JsonResponse({'message': f'Error sending order: {str(e)}'}, status=500)
+
+    return JsonResponse({'message': 'Invalid request'}, status=400)
+
+
+
