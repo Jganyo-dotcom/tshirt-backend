@@ -49,7 +49,7 @@ Notes: {notes}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email=f"{email}",
-                to=['elikemjjames@gmail.com','Kagoventures@gmail.com'],
+                to=['Kagoventures@gmail.com'],
             )
 
             if screenshot_data:
@@ -106,7 +106,7 @@ def submit_specific_order(request):
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email=f"{email}",
-                to=['elikemjjames@gmail.com','Kagoventures@gmail.com'],
+                to=['Kagoventures@gmail.com'],
             )
             mail.send(fail_silently=False)
             return JsonResponse({'message': 'Order sent successfully!'})
