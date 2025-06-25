@@ -67,7 +67,7 @@ Notes: {notes}
 
             print("🕒 Order processed in", round(time.time() - start_time, 2), "seconds")
             return JsonResponse({
-                'message': 'order recieved'
+                'message': "Your order has been recieved. We'll send a confirmation email and sms shortly!"
             })
 
         except Exception as e:
@@ -75,7 +75,7 @@ Notes: {notes}
 
     # If not POST or failed
         return JsonResponse({
-            'message': 'order recieved'
+            'message': 'There was an error placing your order. Try again'
         })
 
 @csrf_exempt    
@@ -109,11 +109,11 @@ def submit_specific_order(request):
                 to=['Kagoventures@gmail.com'],
             )
             mail.send(fail_silently=False)
-            return JsonResponse({'message': 'Order sent successfully!'})
+            return JsonResponse({'message': "Your order has been recieved. We'll send a confirmation email and sms shortly!"})
         except Exception as e:
             return JsonResponse({'message': f'Error sending order: {str(e)}'}, status=500)
 
-    return JsonResponse({'message': 'Invalid request'}, status=400)
+    return JsonResponse({'message': 'There was an error placing your order. Try again'}, status=400)
 
 
 
