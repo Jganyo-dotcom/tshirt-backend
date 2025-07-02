@@ -6,6 +6,7 @@ from django.core.files.base import ContentFile
 from django.http import JsonResponse
 import base64
 import threading
+import os
 import time
 
 # Background email sender
@@ -48,8 +49,8 @@ Notes: {notes}
             mail = EmailMessage(
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
-                from_email=f"{email}",
-                to=['elikemjjames@gmail.com'],
+                from_email= os.getenv("EMAIL_HOST_USER"),
+                to=['Kagoventures@gmail.com'],
             )
 
             if screenshot_data:
@@ -105,7 +106,7 @@ def submit_specific_order(request):
             mail = EmailMessage(
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
-                from_email=f"{email}",
+                from_email=os.getenv("EMAIL_HOST_USER"),
                 to=['Kagoventures@gmail.com'],
             )
             mail.send(fail_silently=False)
