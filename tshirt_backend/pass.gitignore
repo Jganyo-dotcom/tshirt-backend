@@ -4,7 +4,7 @@ __pycache__/
 *.sqlite3
 
 # Ignore environment files
-.env
+pass.env
 
 # Ignore IDE/editor configs
 .vscode/
