@@ -49,7 +49,7 @@ Notes: {notes}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email=f"{email}",
-                to=['Kagoventures@gmail.com'],
+                to=['elikemjjames@gmail.com'],
             )
 
             if screenshot_data:
