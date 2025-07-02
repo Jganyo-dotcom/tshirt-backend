@@ -37,9 +37,9 @@ You have a new T-shirt order:
 
 Full Name: {name}
 Email: {email}
-Contact: {phone}
+WhatsApp Contact: {phone}
 Number of T-shirts: {number}
-size : {size}
+Size : {size}
 Notes: {notes}
 
 (Screenshot is attached if provided.)
@@ -67,7 +67,7 @@ Notes: {notes}
 
             print("🕒 Order processed in", round(time.time() - start_time, 2), "seconds")
             return JsonResponse({
-                'message': "Your order has been recieved. We'll send a confirmation email and sms shortly!"
+                'message': "Your order has been recieved. You will get a confirmation call shortly!"
             })
 
         except Exception as e:
@@ -94,10 +94,10 @@ def submit_specific_order(request):
 
         👤 Name: {name}
         📧 Email: {email}
-        📱 Phone: {phone}
+        📱 Whatsapp Contact: {phone}
         🧥 Design ID: {design}
-            size : {size}
-            number :{number}
+            Size : {size}
+            Number of T-shirts :{number}
             note : {notes}
         """
 
@@ -109,7 +109,7 @@ def submit_specific_order(request):
                 to=['Kagoventures@gmail.com'],
             )
             mail.send(fail_silently=False)
-            return JsonResponse({'message': "Your order has been recieved. We'll send a confirmation email and sms shortly!"})
+            return JsonResponse({'message': "Your order has been recieved. You will get a confirmation call shortly !"})
         except Exception as e:
             return JsonResponse({'message': f'Error sending order: {str(e)}'}, status=500)
 

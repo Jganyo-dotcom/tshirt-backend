@@ -1,0 +1,11 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Ignore environment files
+.env
+
+# Ignore IDE/editor configs
+.vscode/
+*.swp
