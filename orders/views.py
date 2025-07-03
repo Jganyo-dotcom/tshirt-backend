@@ -93,13 +93,13 @@ def submit_specific_order(request):
         message = f"""
         📦 New T-Shirt Order:
 
-        👤 Name: {name}
-        📧 Email: {email}
-        📱 Whatsapp Contact: {phone}
-        🧥 Design ID: {design}
+            Name: {name}
+            Email: {email}
+            Whatsapp Contact: {phone}
+            Design ID: {design}
             Size : {size}
             Number of T-shirts :{number}
-            note : {notes}
+            Notes : {notes}
         """
 
         try:
