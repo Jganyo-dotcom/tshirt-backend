@@ -7,6 +7,7 @@ from django.http import JsonResponse
 import base64
 import threading
 import os
+from django.utils.timezone import now
 import time
 
 # Background email sender
@@ -67,6 +68,19 @@ Notes: {notes}
             threading.Thread(target=send_order_email, args=(mail,)).start()
 
             print("🕒 Order processed in", round(time.time() - start_time, 2), "seconds")
+            print(f"""
+                    🎉🛍️ NEW ORDER RECEIVED! 🧾💥
+                    ===============================
+                    👤 Name: {name}
+                    🎨 Number: {number}
+                    👕 Phone: {phone}
+                    ✅ Status: SUCCESSFULLY PLACED
+                    📦 Packing it with style & love ❤️
+                    🚚 On its way to greatness!
+
+                    🕒 Time: {now().strftime('%Y-%m-%d %H:%M:%S')}
+                    ===============================
+                    """)
             return JsonResponse({
                 'message': "Your order has been recieved. You will get a confirmation call shortly!"
             })
@@ -110,6 +124,19 @@ def submit_specific_order(request):
                 to=['Kagoventures@gmail.com'],
             )
             mail.send(fail_silently=False)
+            print(f"""
+                    🎉🛍️ NEW ORDER RECEIVED! 🧾💥
+                    ===============================
+                    👤 Name: {name}
+                    🎨 Number: {number}
+                    👕 Phone: {phone}
+                    ✅ Status: SUCCESSFULLY PLACED
+                    📦 Packing it with style & love ❤️
+                    🚚 On its way to greatness!
+
+                    🕒 Time: {now().strftime('%Y-%m-%d %H:%M:%S')}
+                    ===============================
+                    """)
             return JsonResponse({'message': "Your order has been recieved. You will get a confirmation call shortly !"})
         except Exception as e:
             return JsonResponse({'message': f'Error sending order: {str(e)}'}, status=500)
