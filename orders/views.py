@@ -5,6 +5,7 @@ from django.core.mail import EmailMessage
 from django.core.files.base import ContentFile
 from django.http import JsonResponse
 import base64
+from .import models
 import threading
 import os
 from django.utils.timezone import now
@@ -66,6 +67,8 @@ Notes: {notes}
 
             # Send email in background
             threading.Thread(target=send_order_email, args=(mail,)).start()
+            order = models.Order(name = name , number = number, email = email, to_email = to_email, size = size, notes = notes, screenshot = screenshot_data, phone = phone)
+            order.save()
 
             print("🕒 Order processed in", round(time.time() - start_time, 2), "seconds")
             print(f"""
@@ -124,6 +127,8 @@ def submit_specific_order(request):
                 to=['Kagoventures@gmail.com'],
             )
             mail.send(fail_silently=False)
+            order_specific = models.Order_specific(name = name , number = number, email = email, size = size, notes = notes, design = design, phone = phone)
+            order_specific.save()
             print(f"""
                     🎉🛍️ NEW ORDER RECEIVED! 🧾💥
                     ===============================
