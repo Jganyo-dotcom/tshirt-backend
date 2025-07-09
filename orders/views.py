@@ -127,8 +127,8 @@ def submit_specific_order(request):
                 to=['Kagoventures@gmail.com'],
             )
             mail.send(fail_silently=False)
-            order_specific = models.Order_specific(name = name , number = number, email = email, size = size, notes = notes, design = design, phone = phone)
-            order_specific.save()
+            order_two = models.Order_specific(name = name , number = number, email = email, size = size, notes = notes, design = design, phone = phone)
+            order_two.save()
             print(f"""
                     🎉🛍️ NEW ORDER RECEIVED! 🧾💥
                     ===============================
