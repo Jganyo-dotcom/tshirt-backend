@@ -133,7 +133,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     "https://jganyo-dotcom.github.io", 
-     "https://kagoedition.netlify.app"
+     "https://kagoedition.netlify.app",
        "http://127.0.0.1:5500",
  # Your GitHub Pages site
 ]
