@@ -52,7 +52,7 @@ Notes: {notes}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email= os.getenv("EMAIL_HOST_USER"),
-                to=['elikemjjames@gmail.com' ,'Kagoventures@gmail.com' ] #Kagoventures@gmail.com
+                to=['elikemjjames@gmail.com' , ] #Kagoventures@gmail.com
             )
 
             if screenshot_data:
@@ -94,10 +94,7 @@ Notes: {notes}
                 'message': "Order Failed "
             })
 
-    # If not POST or failed
-    return JsonResponse({
-        'message': 'An Error occured'
-    })
+   
 
 @csrf_exempt    
 def submit_specific_order(request):
