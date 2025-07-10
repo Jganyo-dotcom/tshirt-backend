@@ -52,7 +52,7 @@ Notes: {notes}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email= os.getenv("EMAIL_HOST_USER"),
-                to=['Kagoventures@gmail.com'],
+                to=['elikemjjames@gmail.com'],#'Kagoventures@gmail.com'
             )
 
             if screenshot_data:
@@ -90,11 +90,14 @@ Notes: {notes}
 
         except Exception as e:
             print("❌ Order failed due to error:", e)
+            return JsonResponse({
+                'message': "Order Failed "
+            })
 
     # If not POST or failed
-        return JsonResponse({
-            'message': 'There was an error placing your order. Try again'
-        })
+    return JsonResponse({
+        'message': 'An Error occured'
+    })
 
 @csrf_exempt    
 def submit_specific_order(request):
@@ -146,7 +149,7 @@ def submit_specific_order(request):
         except Exception as e:
             return JsonResponse({'message': f'Error sending order: {str(e)}'}, status=500)
 
-    return JsonResponse({'message': 'There was an error placing your order. Try again'}, status=400)
+    return JsonResponse({'message': 'An error occured.'}, status=400)
 
 
 
