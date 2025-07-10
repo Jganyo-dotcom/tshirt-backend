@@ -52,7 +52,7 @@ Notes: {notes}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email= os.getenv("EMAIL_HOST_USER"),
-                to=['elikemjjames@gmail.com'],#'Kagoventures@gmail.com'
+                to=['Kagoventures@gmail.com'],
             )
 
             if screenshot_data:
@@ -85,7 +85,7 @@ Notes: {notes}
                     ===============================
                     """)
             return JsonResponse({
-                'message': "Your order has been recieved. You will get a confirmation call shortly!"
+                'message': "Your order has been recieved. You will receive a confirmation whatsapp message within 24hour!"
             })
 
         except Exception as e:
@@ -145,7 +145,7 @@ def submit_specific_order(request):
                     🕒 Time: {now().strftime('%Y-%m-%d %H:%M:%S')}
                     ===============================
                     """)
-            return JsonResponse({'message': "Your order has been recieved. You will get a confirmation call shortly !"})
+            return JsonResponse({'message': "Your order has been recieved. You will receive a confirmation whatsapp message within 24hours !"})
         except Exception as e:
             return JsonResponse({'message': f'Error sending order: {str(e)}'}, status=500)
 
