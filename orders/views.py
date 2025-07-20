@@ -121,7 +121,7 @@ def submit_specific_order(request):
     if request.method == 'POST':
         name = request.POST.get("name")
         number = request.POST.get("number")
-        email = request.POST.get("email")
+        location = request.POST.get("location")
         design = request.POST.get("id_name")
         phone = request.POST.get("phone")
         notes = request.POST.get("notes")
@@ -131,7 +131,7 @@ def submit_specific_order(request):
         📦 New T-Shirt Order:
 
             Full Name: {name}
-            Email: {email}
+            Email: {location}
             Whatsapp Contact: {phone}
             Design ID: {design}
             Size : {size}
@@ -147,7 +147,7 @@ def submit_specific_order(request):
                 to=['Kagoventures@gmail.com'],
             )
             mail.send(fail_silently=False)
-            order_two = models.Order_specific(name = name , number = number, email = email, size = size, notes = notes, design = design, phone = phone)
+            order_two = models.Order_specific(name = name , number = number, email = location, size = size, notes = notes, design = design, phone = phone)
             order_two.save()
             print(f"""
                     🎉🛍️ NEW ORDER RECEIVED! 🧾💥
