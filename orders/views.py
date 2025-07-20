@@ -27,7 +27,7 @@ def submit_order(request):
         try:
             name = request.POST.get("name")
             number = request.POST.get("number")
-            email = request.POST.get("email")
+            location = request.POST.get("location")
             to_email = request.POST.get("to_email")
             phone = request.POST.get("phone")
             notes = request.POST.get("notes")
@@ -57,7 +57,7 @@ def submit_order(request):
 You have a new T-shirt order:
 
 Full Name: {name}
-Email: {email}
+Location: {location}
 WhatsApp Contact: {phone}
 Number of T-shirts: {number}
 Size : {size}
@@ -87,7 +87,7 @@ final Price : {estimated_amount}
 
             # Send email in background
             threading.Thread(target=send_order_email, args=(mail,)).start()
-            order = models.Order(name = name , number = number, email = email, to_email = to_email, size = size, notes = notes, screenshot = screenshot_data, phone = phone)
+            order = models.Order(name = name , number = number, email = location, to_email = to_email, size = size, notes = notes, screenshot = screenshot_data, phone = phone)
             order.save()
 
             print("🕒 Order processed in", round(time.time() - start_time, 2), "seconds")
