@@ -72,7 +72,7 @@ final Price : {estimated_amount}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email= os.getenv("EMAIL_HOST_USER"),
-                to=[ 'elikemjjames@gmail.com'] #Kagoventures@gmail.com
+                to=[ 'Kagoventures@gmail.com'] #Kagoventures@gmail.com
             )
 
             if screenshot_data:
