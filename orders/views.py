@@ -32,7 +32,25 @@ def submit_order(request):
             phone = request.POST.get("phone")
             notes = request.POST.get("notes")
             size = request.POST.get('size')
+            price = request.POST.get('price')
+            width = int(request.POST.get('width'))
+            height = int(request.POST.get('height'))
             screenshot_data = request.FILES.get("screenshot_data")
+            area = width * height 
+            estimated_amount = area
+            if area <= 22500 :
+                estimated_amount = 90
+
+            elif area > 22500 and area <= 30000 :
+                estimated_amount =  110
+  
+            elif area >30000 and area < 34000 :
+                estimated_amount =  130
+
+            elif area >34000 :
+                estimated_amount =  150
+  
+            
 
 
             message = f"""
@@ -44,6 +62,8 @@ WhatsApp Contact: {phone}
 Number of T-shirts: {number}
 Size : {size}
 Notes: {notes}
+frontend price : {price}
+final Price : {estimated_amount}
 
 (Screenshot is attached if provided.)
 """
@@ -52,7 +72,7 @@ Notes: {notes}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email= os.getenv("EMAIL_HOST_USER"),
-                to=[ 'Kagoventures@gmail.com'] #Kagoventures@gmail.com
+                to=[ 'elikemjjames@gmail.com'] #Kagoventures@gmail.com
             )
 
             if screenshot_data:
