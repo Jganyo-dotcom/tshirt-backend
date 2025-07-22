@@ -30,7 +30,9 @@ def submit_order(request):
             location = request.POST.get("location")
             to_email = request.POST.get("to_email")
             phone = request.POST.get("phone")
+            discount_code = request.POST.get('discount_code', '').strip().upper()
             notes = request.POST.get("notes")
+            discount_status = request.POST.get('discount_status')
             size = request.POST.get('size')
             price = request.POST.get('price')
             width = int(request.POST.get('width'))
@@ -39,19 +41,25 @@ def submit_order(request):
             area = width * height 
             estimated_amount = area
             if area <= 22500 :
-                estimated_amount = 90
+                estimated_amount = 100
 
             elif area > 22500 and area <= 30000 :
-                estimated_amount =  110
+                estimated_amount =  120
   
             elif area >30000 and area < 34000 :
-                estimated_amount =  130
+                estimated_amount =  140
 
             elif area >34000 :
-                estimated_amount =  150
+                estimated_amount =  160
   
+            if discount_code == 'MAKEITYOURS' and number >=2 :
+                price = estimated_amount * int(number)
+                f_price = price * 0.90
+                discount_status = 'Appplied discount'
             
-
+            else:
+                f_price = estimated_amount
+                discount_status = 'Not eligible'
 
             message = f"""
 You have a new T-shirt order:
@@ -62,8 +70,9 @@ WhatsApp Contact: {phone}
 Number of T-shirts: {number}
 Size : {size}
 Notes: {notes}
+Discount: {discount_status}
 frontend price : {price}
-final Price : {estimated_amount}
+final Price : {f_price}
 
 (Screenshot is attached if provided.)
 """
@@ -105,7 +114,7 @@ final Price : {estimated_amount}
                     ===============================
                     """)
             return JsonResponse({
-                'message': "Your order has been recieved. You will receive a confirmation whatsapp message within 24hour!"
+                'message': f"Your order has been recieved.Total {f_price} {discount_status}. You will receive a confirmation whatsapp message within 24hour!"
             })
 
         except Exception as e:
@@ -131,7 +140,7 @@ def submit_specific_order(request):
         📦 New T-Shirt Order:
 
             Full Name: {name}
-            Email: {location}
+            location: {location}
             Whatsapp Contact: {phone}
             Design ID: {design}
             Size : {size}
