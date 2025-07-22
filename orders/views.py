@@ -52,13 +52,13 @@ def submit_order(request):
             elif area >34000 :
                 estimated_amount =  160
   
-            if discount_code == 'MAKEITYOURS' and number >=2 :
+            if discount_code == 'MAKEITYOURS' and int(number) >=2 :
                 price = estimated_amount * int(number)
                 f_price = price * 0.90
                 discount_status = 'Appplied discount'
             
             else:
-                f_price = estimated_amount
+                f_price = estimated_amount * int(number)
                 discount_status = 'Not eligible'
 
             message = f"""
