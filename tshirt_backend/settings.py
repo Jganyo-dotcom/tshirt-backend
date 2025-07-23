@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
     'kagoedition.netlify.app',
+    'edition.kagoventures.com'
 ]
 
 
@@ -134,6 +135,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     "https://jganyo-dotcom.github.io", 
      "https://kagoedition.netlify.app",
+     "https://edition.kagoventures.com",
        "http://127.0.0.1:5500",
  # Your GitHub Pages site
 ]
