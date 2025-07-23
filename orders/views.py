@@ -81,7 +81,7 @@ final Price : {f_price}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email= os.getenv("EMAIL_HOST_USER"),   
-                to=[ 'elikemjjames@gmail.com'] #Kagoventures@gmail.com
+                to=[ 'Kagoventures@gmail.com'] #Kagoventures@gmail.com
             )
 
             if screenshot_data:
@@ -114,7 +114,7 @@ final Price : {f_price}
                     ===============================
                     """)
             return JsonResponse({
-                'message': f"Your order has been recieved.Total {f_price} {discount_status}. You will receive a confirmation whatsapp message within 24hour!"
+                'message': f"Your order has been recieved.Total {f_price}.Discount: {discount_status}. You will receive a confirmation whatsapp message within 24hour!"
             })
 
         except Exception as e:
