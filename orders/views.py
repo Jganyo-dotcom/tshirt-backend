@@ -129,6 +129,8 @@ final Price : {f_price}
 def submit_specific_order(request):
     if request.method == 'POST':
         name = request.POST.get("name")
+        phrase = request.POST.get('phrase')
+        price = request.POST.get('price')
         number = request.POST.get("number")
         location = request.POST.get("location")
         design = request.POST.get("id_name")
@@ -145,6 +147,8 @@ def submit_specific_order(request):
             Design ID: {design}
             Size : {size}
             Number of T-shirts:{number}
+            phrase: {phrase}
+            price:{price}
             Notes : {notes}
         """
 
@@ -153,7 +157,7 @@ def submit_specific_order(request):
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email=os.getenv("EMAIL_HOST_USER"),
-                to=['Kagoventures@gmail.com'],
+                to=['elikemjjames@gmail.com'],
             )
             mail.send(fail_silently=False)
             order_two = models.Order_specific(name = name , number = number, email = location, size = size, notes = notes, design = design, phone = phone)
