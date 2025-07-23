@@ -114,7 +114,7 @@ final Price : {f_price}
                     ===============================
                     """)
             return JsonResponse({
-                'message': f"Your order has been recieved.Total {f_price}.Discount: {discount_status}. You will receive a confirmation whatsapp message within 24hour!"
+                'message': f"Your order has been recieved.Total Price: {f_price}.Discount: {discount_status}. You will receive a confirmation whatsapp message within 24hour!"
             })
 
         except Exception as e:
