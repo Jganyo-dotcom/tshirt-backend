@@ -54,7 +54,7 @@ def submit_order(request):
   
             if discount_code == 'MAKEITYOURS' :
                 price = estimated_amount * int(number)
-                f_price = price * 0.90
+                f_price = price * 0.80
                 discount_status = 'Applied discount'
             
             else:
@@ -115,10 +115,10 @@ final Price : {f_price}
                     """)
             return JsonResponse({
                 'message': f"""
-                Your order has been recieved.
-                Total Price: {f_price}.
-                Discount: {discount_status}.
-                You will receive a confirmation whatsapp message within 24hour!
+                 Your order has been recieved.
+                 Total Price: {f_price}.
+                 Discount: {discount_status}.
+                 You will receive a confirmation whatsapp message within 24hour!
                   """
             })
 
@@ -180,7 +180,12 @@ def submit_specific_order(request):
                     🕒 Time: {now().strftime('%Y-%m-%d %H:%M:%S')}
                     ===============================
                     """)
-            return JsonResponse({'message': "Your order has been recieved. You will receive a confirmation whatsapp message within 24hours !"})
+            return JsonResponse({'message':
+                                f"""Your order has been recieved.
+                                Total:{price}
+                                Discount:{phrase}
+                                You will receive a confirmation whatsapp message within 24hours !
+                                """})
         except Exception as e:
             return JsonResponse({'message': f'Error sending order: {str(e)}'}, status=500)
 
