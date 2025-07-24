@@ -41,21 +41,21 @@ def submit_order(request):
             area = width * height 
             estimated_amount = area
             if area <= 22500 :
-                estimated_amount = 100
+                estimated_amount = 150
 
             elif area > 22500 and area <= 30000 :
-                estimated_amount =  120
+                estimated_amount =  150
   
             elif area >30000 and area < 34000 :
-                estimated_amount =  140
+                estimated_amount =   150
 
             elif area >34000 :
-                estimated_amount =  160
+                estimated_amount =   150
   
-            if discount_code == 'MAKEITYOURS' and int(number) >=2 :
+            if discount_code == 'MAKEITYOURS' :
                 price = estimated_amount * int(number)
                 f_price = price * 0.90
-                discount_status = 'Appplied discount'
+                discount_status = 'Applied discount'
             
             else:
                 f_price = estimated_amount * int(number)
@@ -81,7 +81,7 @@ final Price : {f_price}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email= os.getenv("EMAIL_HOST_USER"),   
-                to=[ 'Kagoventures@gmail.com'] #Kagoventures@gmail.com
+                to=[ 'elikemjjames@gmail.com'] #Kagoventures@gmail.com
             )
 
             if screenshot_data:
@@ -114,7 +114,12 @@ final Price : {f_price}
                     ===============================
                     """)
             return JsonResponse({
-                'message': f"Your order has been recieved.Total Price: {f_price}.Discount: {discount_status}. You will receive a confirmation whatsapp message within 24hour!"
+                'message': f"""
+                Your order has been recieved.
+                Total Price: {f_price}.
+                Discount: {discount_status}.
+                You will receive a confirmation whatsapp message within 24hour!
+                  """
             })
 
         except Exception as e:
@@ -157,7 +162,7 @@ def submit_specific_order(request):
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email=os.getenv("EMAIL_HOST_USER"),
-                to=['Kagoventures@gmail.com'],
+                to=['elikemjjames@gmail.com'],
             )
             mail.send(fail_silently=False)
             order_two = models.Order_specific(name = name , number = number, email = location, size = size, notes = notes, design = design, phone = phone)
