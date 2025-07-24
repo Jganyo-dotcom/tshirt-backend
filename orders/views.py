@@ -81,7 +81,7 @@ final Price : {f_price}
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email= os.getenv("EMAIL_HOST_USER"),   
-                to=[ 'elikemjjames@gmail.com'] #Kagoventures@gmail.com
+                to=[ 'elikemjjames@gmail.com','Kagoventures@gmail.com'] #Kagoventures@gmail.com
             )
 
             if screenshot_data:
@@ -162,7 +162,7 @@ def submit_specific_order(request):
                 subject=f"🎨 New T-Shirt Order from {name}",
                 body=message,
                 from_email=os.getenv("EMAIL_HOST_USER"),
-                to=['elikemjjames@gmail.com'],
+                to=['elikemjjames@gmail.com','Kagoventures@gmail.com']
             )
             mail.send(fail_silently=False)
             order_two = models.Order_specific(name = name , number = number, email = location, size = size, notes = notes, design = design, phone = phone)
