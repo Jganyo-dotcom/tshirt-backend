@@ -152,8 +152,8 @@ def submit_specific_order(request):
             Design ID: {design}
             Size : {size}
             Number of T-shirts:{number}
-            phrase: {phrase}
-            price:{price}
+            Discount: {phrase}
+            frontend price:{price}
             Notes : {notes}
         """
 
